@@ -180,6 +180,7 @@ print("w_s0 =", w_s0, "radians")
 Ls = L0 + (n0 + dw_dt + d_omega_dt) * t_since \
     + n0_dot * t_since * t_since / 2 \
     + n0_double_dot * t_since * t_since * t_since / 6 
+Ls = Ls % (2 * math.pi)
 print("Ls =", Ls, "radians")
 
 
@@ -197,4 +198,10 @@ a_yNSL = e * math.sin(w_s0) - J3 / J2 / 2 * aE / p * sin_i0
 print("a_yNSL =", a_yNSL, "[unitless]")
 
 L = Ls - J3 / J2 / 4 * aE / p * a_xNSL * sin_i0 * (3 + 5 * cos_i0) / (1 + cos_i0)
+L = L % (2 * math.pi)
 print("L =", L, "radians")
+
+
+print("\n-----------SOLVING KEPLERS EQUATION-----------\n")
+
+

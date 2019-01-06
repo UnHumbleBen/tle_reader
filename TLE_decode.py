@@ -181,3 +181,20 @@ Ls = L0 + (n0 + dw_dt + d_omega_dt) * t_since \
     + n0_dot * t_since * t_since / 2 \
     + n0_double_dot * t_since * t_since * t_since / 6 
 print("Ls =", Ls, "radians")
+
+
+# more constants...
+J3 = -0.253881 * 10 ** -5 # paper
+sin_i0 = math.sin(i0)
+
+
+print("\n------------LONG PERIOD PERIODICS------------\n")
+
+a_xNSL = e * math.cos(w_s0)
+print("a_xNSL =", a_xNSL, "[unitless]")
+
+a_yNSL = e * math.sin(w_s0) - J3 / J2 / 2 * aE / p * sin_i0
+print("a_yNSL =", a_yNSL, "[unitless]")
+
+L = Ls - J3 / J2 / 4 * aE / p * a_xNSL * sin_i0 * (3 + 5 * cos_i0) / (1 + cos_i0)
+print("L =", L, "radians")

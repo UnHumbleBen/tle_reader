@@ -203,5 +203,31 @@ print("L =", L, "radians")
 
 
 print("\n-----------SOLVING KEPLERS EQUATION-----------\n")
+U = L - omega_s0
+U = U % (2 * math.pi)
+print("U =", U, "radians")
+
+iteration = 0 # ITEM3 in FORTRAN
+E = U
+deltaE = 1 #TEM5 in FORTRAN
+while True:
+    cosE = math.cos(E)
+    sinE = math.sin(E)
+
+    print("Iteration", iteration, "    E =", E, "radians", "    deltaE =", deltaE)
+
+    if abs(deltaE) < 10 ** -6 or iteration >= 10:
+        break
 
 
+    iteration += 1
+
+    deltaE = -a_yNSL * sinE - a_xNSL * cosE + 1
+    deltaE = (U - a_yNSL * cosE + a_xNSL * sinE - E) / deltaE
+    absDeltaE = abs(deltaE) # TEM2 in FORTRAN
+    if absDeltaE > 1:
+        deltaE = absDeltaE / deltaE
+
+    E = E + deltaE
+
+print("E =", E, "radians")

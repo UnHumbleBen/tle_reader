@@ -68,11 +68,34 @@ print("\n")
 print("Satellite Number:                                {0}".format(lines[2][2:8].strip()))
 print("Inclination:                                     {0}".format(lines[2][8:17].strip()))
 i0 = lines[2][8:17].strip()
+i0 = float(i0)
+print("----i0", i0)
+
 print("Right Ascension of Ascending Node:               {0}".format(lines[2][17:26].strip()))
+omega0 = lines[2][17:26].strip()
+omega0 = float(omega0)
+print("----omega0", omega0)
+
 print("Eccentricity:                                    {0}".format(lines[2][26:34].strip()))
+e0 = lines[2][26:34].strip()
+e0 = float(e0) / (10 ** 7)
+print("----e0", e0)
+
 print("Argument of Perigee:                             {0}".format(lines[2][34:43].strip()))
+w0 = lines[2][34:43].strip()
+w0 = float(w0) 
+print("----w0", w0)
+
 print("Mean Anomaly:                                    {0}".format(lines[2][43:52].strip()))
+M0 = lines[2][43:52].strip()
+M0 = float(M0)
+print("----M0", M0)
+
 print("Mean Motion:                                     {0}".format(lines[2][52:63].strip()))
+n0 = lines[2][52:63].strip()
+n0 = float(n0)
+print("----n0", n0)
+
 print("Revolutions at Epoch:                            {0}".format(lines[2][63:68].strip()))
 print("Checksum:                                        {0}".format(lines[2][68:70].strip()))
 

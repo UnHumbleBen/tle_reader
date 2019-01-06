@@ -1,7 +1,11 @@
 import sys
 import math
 
-#Obtain input as string
+# Useful Conversions
+REVOLUTIONS_TO_RADIANS = 2 * math.pi
+DAYS_TO_MINUTES = 1440
+
+# Obtain input as string
 raw_data = ''
 tmp_line = ''
 lines = []
@@ -47,8 +51,11 @@ print("Epoch Second:                                    {0}".format(epoch_second
 
 print("First Time Derivative of Mean Motion:            {0}".format(lines[1][32:44].strip()))
 n0_dot = lines[1][32:44].strip()
-n0_dot = float(n0_dot)
-print("----n0_dot", n0_dot)
+n0_dot = float(n0_dot) # rev per day squared
+print("----n0_dot", n0_dot, "rev per day squared")
+n0_dot = n0_dot * REVOLUTIONS_TO_RADIANS / (DAYS_TO_MINUTES * DAYS_TO_MINUTES) # radians per min squared
+
+print("----n0_dot", n0_dot, "radians per min squared")
 
 print("Second Time Derivative of Mean Motion:           {0}".format(lines[1][44:53].strip()))
 temp = lines[1][44:53]
@@ -99,5 +106,6 @@ print("----n0", n0)
 print("Revolutions at Epoch:                            {0}".format(lines[2][63:68].strip()))
 print("Checksum:                                        {0}".format(lines[2][68:70].strip()))
 
-
-
+// Initializing constants
+k_e = 0.0743669161
+a1 = (k_e / n0) ** (2 / 3) 

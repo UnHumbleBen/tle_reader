@@ -46,7 +46,19 @@ epoch_second = 60 * epoch_minute
 print("Epoch Second:                                    {0}".format(epoch_second))
 
 print("First Time Derivative of Mean Motion:            {0}".format(lines[1][32:44].strip()))
+n0_dot = lines[1][32:44].strip()
+n0_dot = float(n0_dot)
+print("----n0_dot", n0_dot)
+
 print("Second Time Derivative of Mean Motion:           {0}".format(lines[1][44:53].strip()))
+temp = lines[1][44:53]
+mantissa = temp[0:6]
+power = temp[-3:]
+mantissa = int(mantissa)
+power = int(power)
+n0_double_dot = (mantissa / 100000) ** power
+print("----n0_double_dot", n0_double_dot)
+
 print("BSTAR Drag Term:                                 {0}".format(lines[1][53:62].strip()))
 print("Ephemeris Type:                                  {0}".format(lines[1][62:64].strip()))
 print("Element Set Number:                              {0}".format(lines[1][64:68].strip()))
@@ -55,6 +67,7 @@ print("Checksum:                                        {0}".format(lines[1][68:
 print("\n")
 print("Satellite Number:                                {0}".format(lines[2][2:8].strip()))
 print("Inclination:                                     {0}".format(lines[2][8:17].strip()))
+i0 = lines[2][8:17].strip()
 print("Right Ascension of Ascending Node:               {0}".format(lines[2][17:26].strip()))
 print("Eccentricity:                                    {0}".format(lines[2][26:34].strip()))
 print("Argument of Perigee:                             {0}".format(lines[2][34:43].strip()))

@@ -154,9 +154,30 @@ dw_dt = 3 / 4 * J2 * (aE * aE) / (p0 * p0) * n0 * (5 * cos_i0 * cos_i0 - 1)
 print("dw_dt =", dw_dt, "radians per min")
 
 print("\n-------------SETTING EPOCH TIME-------------\n")
-t_since = 0
+t_since = 100
 print("Time since epoch =", t_since, "minutes")
 
 # Update for secular effects of atmospheric drag and gravitation
 print("\nUPDATE FOR SECULAR GRAVITY AND ATMOSPHERIC DRAG\n")
-a = n0 + n0_dot
+a = n0 + n0_dot * t_since + n0_double_dot / 2 * t_since * t_since
+a = a0 * (n0 / a) ** (2 / 3)
+print("a =", a, "er")
+
+e = 10 ** -6
+if a > q0:
+    e = 1 - q0 / a
+print("e =", e, "[unitless]")
+
+p = a * (1 - e * e)
+print("p =", p, "er")
+
+omega_s0 = omega0 + d_omega_dt * t_since
+print("omega_s0 =", omega_s0, "radians")
+
+w_s0 = w0 + dw_dt * t_since
+print("w_s0 =", w_s0, "radians")
+
+Ls = L0 + (n0 + dw_dt + d_omega_dt) * t_since \
+    + n0_dot * t_since * t_since / 2 \
+    + n0_double_dot * t_since * t_since * t_since / 6 
+print("Ls =", Ls, "radians")

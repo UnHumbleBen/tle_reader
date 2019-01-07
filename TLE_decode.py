@@ -68,7 +68,7 @@ mantissa = int(mantissa)
 print("--------mantissa", mantissa)
 power = int(power)
 print("--------power", power)
-n0_double_dot = 6 * (mantissa / 100000) ** power # reverse 6 division
+n0_double_dot = 6 * (mantissa / 100000) * 10 ** power # reverse 6 division
 print("----n0_double_dot", n0_double_dot, "rev per day cubed")
 n0_double_dot *= REVOLUTIONS_TO_RADIANS / (DAYS_TO_MINUTES ** 3) # radians per min cubed
 print("----n0_double_dot", n0_double_dot, "radians per min cubed")
@@ -160,7 +160,7 @@ dw_dt = 3 / 4 * J2 * (aE * aE) / (p0 * p0) * n0 * (5 * cos_i0 * cos_i0 - 1)
 print("dw_dt =", dw_dt, "radians per min")
 
 print("\n-------------SETTING EPOCH TIME-------------\n")
-t_since = 0
+t_since = 720 + 360 + 360
 print("Time since epoch =", t_since, "minutes")
 
 # Update for secular effects of atmospheric drag and gravitation

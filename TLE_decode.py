@@ -65,7 +65,9 @@ temp = lines[1][44:53]
 mantissa = temp[0:6]
 power = temp[-3:]
 mantissa = int(mantissa)
+print("--------mantissa", mantissa)
 power = int(power)
+print("--------power", power)
 n0_double_dot = (mantissa / 100000) ** power
 print("----n0_double_dot", n0_double_dot, "rev per day cubed")
 n0_double_dot *= REVOLUTIONS_TO_RADIANS / (DAYS_TO_MINUTES ** 3) # radians per min cubed
@@ -132,6 +134,8 @@ print("a1 =", a1, "er")
 # https://ipnpr.jpl.nasa.gov/progress_report/42-196/196C.pdf
 # https://space.stackexchange.com/questions/22976/for-the-mathematical-relationship-between-j2-km5-s2-and-dimensionless-j2-w?rq=1
 J2 = 0.00108262545
+# using the value from the paper
+JE = 5.413080 * 10 ** 4 * 2
 aE = 1 # radius of the earth
 cos_i0 = math.cos(i0)
 delta1 = (3 / 4) * J2 * (aE * aE / a1 / a1) * (3 * cos_i0 * cos_i0 - 1) / (1 - e0 * e0) ** (3/2)
@@ -156,7 +160,7 @@ dw_dt = 3 / 4 * J2 * (aE * aE) / (p0 * p0) * n0 * (5 * cos_i0 * cos_i0 - 1)
 print("dw_dt =", dw_dt, "radians per min")
 
 print("\n-------------SETTING EPOCH TIME-------------\n")
-t_since = 9723.6985248
+t_since = 0 
 print("Time since epoch =", t_since, "minutes")
 
 # Update for secular effects of atmospheric drag and gravitation

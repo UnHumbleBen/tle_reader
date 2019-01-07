@@ -261,3 +261,30 @@ sinU = a / r * (sinE - a_yNSL - a_xNSL * temp)
 cosU = a / r * (cosE - a_xNSL + a_yNSL * temp)
 print("sinU =", sinU, "[unitless]")
 print("cosU =", cosU, "[unitless]")
+
+u = math.atan2(sinU, cosU)
+if u < 0:                  # ensures that u is in range [0, 2pi)
+    u += 2 * math.pi
+print("u =", u, "radians")
+
+print("    checking u...")
+print("    sinU / cosU =", sinU/cosU)
+print("    tan(u) =", math.tan(u))
+
+print("\n-------UPDATE FOR SHORT PERIODICS-------\n")
+# more constants...
+sin2u = (cosU + cosU) * sinU
+cos2u = 1 - 2 * sinU * sinU
+pL_squared = pL * pL
+
+r_k = r + J2 / 4 * (aE * aE) / pL * sin_i0 * sin_i0 * cos2u
+print("r_k =", r_k, "er")
+
+u_k = u - J2 / 8 * (aE * aE) / (pL * pL) * (7 * cos_i0 * cos_i0 - 1) * sin2u
+print("u_k =", u_k, "radians")
+
+omega_k = omega_s0 + 3 / 4 * J2 * (aE * aE) / (pL * pL) * cos_i0 * sin2u
+print("omega_k =", omega_k, "radians")
+
+i_k = i0 + 3 / 4 * J2 * (aE * aE) / (pL * pL) * sin_i0 * cos_i0 * cos2u
+print("i_k =", i_k, "radians")

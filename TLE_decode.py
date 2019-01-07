@@ -54,7 +54,7 @@ print("Epoch Second:                                    {0}".format(epoch_second
 
 print("First Time Derivative of Mean Motion:            {0}".format(lines[1][32:44].strip()))
 n0_dot = lines[1][32:44].strip()
-n0_dot = float(n0_dot) # rev per day squared
+n0_dot = 2 * float(n0_dot) # rev per day squared and reverse 2 division
 print("----n0_dot", n0_dot, "rev per day squared")
 n0_dot = n0_dot * REVOLUTIONS_TO_RADIANS / (DAYS_TO_MINUTES * DAYS_TO_MINUTES) # radians per min squared
 
@@ -68,7 +68,7 @@ mantissa = int(mantissa)
 print("--------mantissa", mantissa)
 power = int(power)
 print("--------power", power)
-n0_double_dot = (mantissa / 100000) ** power
+n0_double_dot = 6 * (mantissa / 100000) ** power # reverse 6 division
 print("----n0_double_dot", n0_double_dot, "rev per day cubed")
 n0_double_dot *= REVOLUTIONS_TO_RADIANS / (DAYS_TO_MINUTES ** 3) # radians per min cubed
 print("----n0_double_dot", n0_double_dot, "radians per min cubed")
@@ -366,7 +366,7 @@ z *= ER_TO_KM
 x_dot *= ER_TO_KM / MINUTES_TO_SECONDS
 y_dot *= ER_TO_KM / MINUTES_TO_SECONDS
 z_dot *= ER_TO_KM / MINUTES_TO_SECONDS
-
+print("Time since epoch =", t_since, "minutes")
 print("r =")
 print("    ", x)   
 print("    ", y)   

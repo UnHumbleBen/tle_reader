@@ -135,7 +135,7 @@ print("a1 =", a1, "er")
 # https://space.stackexchange.com/questions/22976/for-the-mathematical-relationship-between-j2-km5-s2-and-dimensionless-j2-w?rq=1
 J2 = 0.00108262545
 # using the value from the paper
-JE = 5.413080 * 10 ** 4 * 2
+JE = 5.413080 * 10 ** -4 * 2
 aE = 1 # radius of the earth
 cos_i0 = math.cos(i0)
 delta1 = (3 / 4) * J2 * (aE * aE / a1 / a1) * (3 * cos_i0 * cos_i0 - 1) / (1 - e0 * e0) ** (3/2)
@@ -244,7 +244,7 @@ print("\n----SHORT PERIOD PRELIMINARY QUANTITIES----\n")
 eCosE = a_xNSL * cosE + a_yNSL * sinE
 print("eCosE =", eCosE, "[unitless]")
 
-eSinE = a_xNSL * sinE + a_yNSL * cosE
+eSinE = a_xNSL * sinE - a_yNSL * cosE
 print("eSinE =", eSinE, "[unitless]")
 
 eL_squared = a_xNSL * a_xNSL + a_yNSL * a_yNSL

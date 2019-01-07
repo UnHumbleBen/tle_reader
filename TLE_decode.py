@@ -154,7 +154,7 @@ dw_dt = 3 / 4 * J2 * (aE * aE) / (p0 * p0) * n0 * (5 * cos_i0 * cos_i0 - 1)
 print("dw_dt =", dw_dt, "radians per min")
 
 print("\n-------------SETTING EPOCH TIME-------------\n")
-t_since = 100
+t_since = 10080
 print("Time since epoch =", t_since, "minutes")
 
 # Update for secular effects of atmospheric drag and gravitation

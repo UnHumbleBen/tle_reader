@@ -299,4 +299,9 @@ def SGP(t_since):
     print("    ", y_dot)
     print("    ", z_dot)
 
-SGP()
+t = 0
+while (t <= 1440):
+    print("----------------t =", t)
+    SGP(t)
+    print("\n")
+    t += 360

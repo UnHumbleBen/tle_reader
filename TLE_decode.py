@@ -138,7 +138,7 @@ J2 = 0.00108262545
 JE = 5.413080 * 10 ** -4 * 2
 aE = 1 # radius of the earth
 cos_i0 = math.cos(i0)
-delta1 = (3 / 4) * J2 * (aE * aE / a1 / a1) * (3 * cos_i0 * cos_i0 - 1) / (1 - e0 * e0) ** (3/2)
+delta1 = (3 / 4) * J2 * (aE * aE) / (a1 * a1) * (3 * cos_i0 * cos_i0 - 1) / (1 - e0 * e0) ** (3/2)
 print("delta1 =", delta1, "[unitless]")
 
 a0 = a1 * (1 - 1 / 3 * delta1 - delta1 * delta1 - 134 / 81 * delta1 * delta1 * delta1)
@@ -160,7 +160,7 @@ dw_dt = 3 / 4 * J2 * (aE * aE) / (p0 * p0) * n0 * (5 * cos_i0 * cos_i0 - 1)
 print("dw_dt =", dw_dt, "radians per min")
 
 print("\n-------------SETTING EPOCH TIME-------------\n")
-t_since = 0 
+t_since = 0
 print("Time since epoch =", t_since, "minutes")
 
 # Update for secular effects of atmospheric drag and gravitation
@@ -171,7 +171,7 @@ print("a =", a, "er")
 
 e = 10 ** -6
 if a > q0:
-    e = 1 - q0 / a
+    e = 1 - q0 / a0
 print("e =", e, "[unitless]")
 
 p = a * (1 - e * e)

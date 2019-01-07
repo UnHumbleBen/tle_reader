@@ -5,6 +5,8 @@ from math import radians
 # Useful Conversions
 REVOLUTIONS_TO_RADIANS = 2 * math.pi
 DAYS_TO_MINUTES = 1440
+MINUTES_TO_SECONDS = 60
+ER_TO_KM = 6378.135
 
 # Obtain input as string
 raw_data = ''
@@ -288,3 +290,85 @@ print("omega_k =", omega_k, "radians")
 
 i_k = i0 + 3 / 4 * J2 * (aE * aE) / (pL * pL) * sin_i0 * cos_i0 * cos2u
 print("i_k =", i_k, "radians")
+
+print("\n------------ORIENTATION VECTORS------------\n")
+# constants ...
+sin_u_k = math.sin(u_k)
+cos_u_k = math.cos(u_k)
+sin_omega_k = math.sin(omega_k)
+cos_omega_k = math.cos(omega_k)
+sin_i_k = math.sin(i_k)
+cos_i_k = math.cos(i_k)
+
+Mx = -sin_omega_k * cos_i_k
+My = cos_omega_k * cos_i_k
+Mz = sin_i_k
+print("M =")
+print("    ", Mx)
+print("    ", My)
+print("    ", Mz)
+
+Nx = cos_omega_k
+Ny = sin_omega_k
+Nz = 0
+print("N =")
+print("    ", Nx)
+print("    ", Ny)
+print("    ", Nz)
+
+Ux = Mx * sin_u_k + Nx * cos_u_k
+Uy = My * sin_u_k + Ny * cos_u_k
+Uz = Mz * sin_u_k + Nz * cos_u_k
+
+Vx = Mx * cos_u_k - Nx * sin_u_k
+Vy = My * cos_u_k - Ny * sin_u_k
+Vz = Mz * cos_u_k - Nz * sin_u_k
+
+print("U =")
+print("    ", Ux)
+print("    ", Uy)
+print("    ", Uz)
+
+print("V =")
+print("    ", Vx)
+print("    ", Vy)
+print("    ", Vz)
+
+print("\n------------POSITION AND VELOCITY------------\n")
+
+x = r_k * Ux
+y = r_k * Uy
+z = r_k * Uz
+
+x_dot = r_dot * Ux + r_v_dot * Vx
+y_dot = r_dot * Uy + r_v_dot * Vy
+z_dot = r_dot * Uz + r_v_dot * Vz
+
+print("r =")
+print("    ", x)
+print("    ", y)
+print("    ", z)
+
+print("r_dot =")
+print("    ", x_dot)
+print("    ", y_dot)
+print("    ", z_dot)
+
+print("\n------------CONVERTING TO KM AND SECONDS-----------\n")
+x *= ER_TO_KM
+y *= ER_TO_KM
+z *= ER_TO_KM
+
+x_dot *= ER_TO_KM / MINUTES_TO_SECONDS
+y_dot *= ER_TO_KM / MINUTES_TO_SECONDS
+z_dot *= ER_TO_KM / MINUTES_TO_SECONDS
+
+print("r =")
+print("    ", x)   
+print("    ", y)   
+print("    ", z)   
+
+print("r_dot =")
+print("    ", x_dot)
+print("    ", y_dot)
+print("    ", z_dot)

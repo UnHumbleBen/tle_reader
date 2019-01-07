@@ -158,7 +158,7 @@ t_since = 100
 print("Time since epoch =", t_since, "minutes")
 
 # Update for secular effects of atmospheric drag and gravitation
-print("\nUPDATE FOR SECULAR GRAVITY AND ATMOSPHERIC DRAG\n")
+print("\n-----SECULAR GRAVITY AND ATMOSPHERIC DRAG-----\n")
 a = n0 + n0_dot * t_since + n0_double_dot / 2 * t_since * t_since
 a = a0 * (n0 / a) ** (2 / 3)
 print("a =", a, "er")
@@ -231,3 +231,33 @@ while True:
     E = E + deltaE
 
 print("E =", E, "radians")
+
+
+print("\n----SHORT PERIOD PRELIMINARY QUANTITIES----\n")
+
+eCosE = a_xNSL * cosE + a_yNSL * sinE
+print("eCosE =", eCosE, "[unitless]")
+
+eSinE = a_xNSL * sinE + a_yNSL * cosE
+print("eSinE =", eSinE, "[unitless]")
+
+eL_squared = a_xNSL * a_xNSL + a_yNSL * a_yNSL
+print("eL_squared =", eL_squared, "[unitless]")
+
+pL = a * (1 - eL_squared)
+print("pL =", pL, "er")
+
+r = a * (1 - eCosE)
+print("r =", r, "er")
+
+r_dot = k_e * math.sqrt(a) / r * eSinE
+print("r_dot =", r_dot, "er per min")
+
+r_v_dot = k_e * math.sqrt(pL) / r
+print("r_v_dot=", r_v_dot, "er per min")
+
+temp = eSinE / (1 + math.sqrt(1 - eL_squared))
+sinU = a / r * (sinE - a_yNSL - a_xNSL * temp)
+cosU = a / r * (cosE - a_xNSL + a_yNSL * temp)
+print("sinU =", sinU, "[unitless]")
+print("cosU =", cosU, "[unitless]")
